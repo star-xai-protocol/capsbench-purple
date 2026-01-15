@@ -20,4 +20,4 @@ COPY purple_ai.py .
 
 # 5. Startup Command
 # Explicitly using 'python3' as preferred
-CMD ["python3", "purple_ai.py"]
+ENTRYPOINT ["python", "purple_ai.py"]
