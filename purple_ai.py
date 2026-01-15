@@ -31,6 +31,18 @@ if not GOOGLE_API_KEY:
 # SERVER_URL = os.getenv("SERVER_URL", "http://localhost:5000")
 SERVER_URL = os.getenv("SERVER_URL", "http://green-agent:5000")
 
+# Intentar conectar durante 30 segundos antes de rendirse
+print(f"🟣 Intentando conectar a {SERVER_URL}...")
+for i in range(10):
+    try:
+        # Solo comprobamos si responde, no iniciamos juego aún
+        requests.get(f"{SERVER_URL}", timeout=2)
+        print("✅ Servidor encontrado.")
+        break
+    except:
+        print(f"⏳ Esperando al servidor... (Intento {i+1}/10)")
+        time.sleep(3)
+
 # --- 4. CLIENT CONFIGURATION ---
 client = genai.Client(api_key=GOOGLE_API_KEY)
 MODEL_NAME = "gemini-2.5-flash"
