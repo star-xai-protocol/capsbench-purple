@@ -28,7 +28,8 @@ if not GOOGLE_API_KEY:
 # 3. CONFIGURATION
 # Before: SERVER_URL = "http://localhost:5000"
 # Detects if we are in Docker (reads the environment variable) or on Mac (uses localhost)
-SERVER_URL = os.getenv("SERVER_URL", "http://localhost:5000")
+# SERVER_URL = os.getenv("SERVER_URL", "http://localhost:5000")
+SERVER_URL = os.getenv("SERVER_URL", "http://green-agent:5000")
 
 # --- 4. CLIENT CONFIGURATION ---
 client = genai.Client(api_key=GOOGLE_API_KEY)
