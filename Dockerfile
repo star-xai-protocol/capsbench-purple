@@ -7,6 +7,11 @@ ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app
 
 WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+EXPOSE 9009
+CMD ["python", "green_agent.py"]
 
 # 3. Instalación de dependencias
 COPY requirements.txt .
