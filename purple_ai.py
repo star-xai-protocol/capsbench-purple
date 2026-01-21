@@ -29,9 +29,9 @@ if not GOOGLE_API_KEY:
 # Before: SERVER_URL = "http://localhost:5000"
 # Detects if we are in Docker (reads the environment variable) or on Mac (uses localhost)
 # SERVER_URL = os.getenv("SERVER_URL", "http://localhost:5000")
-SERVER_URL = os.getenv("SERVER_URL", "http://green-agent:9009") # Canviat 
+SERVER_URL = os.getenv("SERVER_URL", "http://green_agent:9009") # Canviat 
 
-# Intentar conectar durante 30 segundos antes de rendirse
+# Intentar conectar durante 9 segundos antes de rendirse
 print(f"🟣 Intentando conectar a {SERVER_URL}...")
 for i in range(10):
     try:
@@ -40,7 +40,7 @@ for i in range(10):
         print("✅ Servidor encontrado.")
         break
     except:
-        print(f"⏳ Esperando al servidor... (Intento {i+1}/10)")
+        print(f"⏳ Esperando al servidor... (Intento {i+1}/3)")
         time.sleep(3)
 
 # --- 4. CLIENT CONFIGURATION ---
