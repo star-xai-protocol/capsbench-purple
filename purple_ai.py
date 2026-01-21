@@ -34,7 +34,7 @@ SERVER_URL = "http://localhost:5000"
 
 # Intentar conectar durante 9 segundos antes de rendirse
 print(f"🟣 Intentando conectar a {SERVER_URL}...")
-for i in range(10):
+for i in range(3):
     try:
         # Solo comprobamos si responde, no iniciamos juego aún
         requests.get(f"{SERVER_URL}", timeout=2)
