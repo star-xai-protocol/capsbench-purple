@@ -46,7 +46,7 @@ for i in range(3):
 
 # --- 4. CLIENT CONFIGURATION ---
 client = genai.Client(api_key=GOOGLE_API_KEY)
-MODEL_NAME = "gemini-2.0-flash"
+MODEL_NAME = "gemini-2.5-flash"
 AGENT_ID = f"Purple-Agent-{MODEL_NAME}"
 
 # =============================================================================
