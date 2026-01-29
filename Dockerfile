@@ -1,23 +1,20 @@
-FROM python:3.11-slim
+# 1. Base Image: Use a lightweight and recent Python version
+FROM python:3.12-slim
 
-# Evita archivos basura de Python y logs en buffer
+# 2. Environment config: Prevents .pyc files and enables unbuffered logging (VITAL for debugging)
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# ¡CRUCIAL! Añadimos /app/src al PYTHONPATH
-# Esto permite que Python encuentre tus módulos dentro de 'src'
-ENV PYTHONPATH="${PYTHONPATH}:/app/src"
-
+# 3. Set the working directory inside the container
 WORKDIR /app
 
-# Instalamos dependencias del sistema (curl para healthchecks)
-RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+# 4. Install dependencies first (leverages Docker cache for faster builds)
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Instalamos las librerías necesarias
-RUN pip install --no-cache-dir requests toml flask flask-cors google-genai python-dotenv gymnasium numpy
+# 5. Copy your Agent's code
+COPY purple_ai.py .
 
-# Copiamos todo el proyecto al contenedor
-COPY . .
-
-# Comando de arranque: Ejecuta el servidor desde la carpeta src
-CMD ["python", "src/green_agent.py"]
+# 6. Command to run the agent
+# Since the agent acts as a client connecting to the server, we just execute the script.
+CMD ["python", "purple_ai.py"]
