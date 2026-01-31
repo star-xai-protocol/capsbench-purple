@@ -10,6 +10,7 @@ import time
 import json
 import os
 import sys
+import argparse
 from dotenv import load_dotenv
 
 # --- 1. NEW LIBRARY (google.genai) ---
@@ -537,4 +538,14 @@ def main():
             continue
 
 if __name__ == "__main__":
+    # 🛡️ BLINDAJE: Ignoramos los argumentos --host/--port que envía el Leaderboard
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--host", default="0.0.0.0")
+    parser.add_argument("--port", default=9009)
+    parser.add_argument("--card-url", default="")
+    
+    # Tragamos los argumentos y no hacemos nada con ellos
+    args, unknown = parser.parse_known_args()
+    
+    # Arrancamos la lógica real
     main()
