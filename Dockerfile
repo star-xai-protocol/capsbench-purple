@@ -18,7 +18,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY purple_ai.py .
 
 # 6. EXPOSE (Informativo, pero ayuda al Leaderboard a saber qué puerto usas por defecto)
-EXPOSE 9009
+EXPOSE 80
 
 # 7. EL COMANDO ROBUSTO (Estilo "Example 3")
 # ENTRYPOINT: Define "QUÉ" se ejecuta (siempre es python y tu script)
@@ -28,4 +28,4 @@ ENTRYPOINT ["python", "-u", "purple_ai.py"]
 # CMD: Define "CÓMO" se ejecuta por defecto (Argumentos)
 # El Leaderboard sustituirá ESTA línea con sus propios argumentos,
 # pero respetará el ENTRYPOINT de arriba.
-CMD ["--host", "0.0.0.0", "--port", "9009"]
+CMD ["--host", "0.0.0.0", "--port", "80"]
