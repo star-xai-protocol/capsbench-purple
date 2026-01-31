@@ -418,8 +418,8 @@ def main():
     connected = False
     current_state = None
     
-    # Intentamos conectar durante 60 segundos (30 intentos x 2s)
-    for i in range(30):
+    # Intentamos conectar durante 60 segundos (3 intentos x 2s)
+    for i in range(3):
         try:
             payload = {"agent_id": AGENT_ID, "level_id": LEVEL_TO_PLAY, "ai_model": MODEL_NAME}
             resp = session.post(f"{SERVER_URL}/start_game", json=payload)
